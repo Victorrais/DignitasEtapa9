@@ -34,6 +34,7 @@
 .page-header p { margin: 4px 0 0; color: var(--fg-muted); }
 
 .grid { display: grid; gap: 16px; }
+.grid > * { min-width: 0; } /* sem isso, tabelas largas empurram a grade além da tela */
 .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .grid-main-aside { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: start; }
