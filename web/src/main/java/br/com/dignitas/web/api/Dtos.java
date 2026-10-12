@@ -4,9 +4,11 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
+import java.util.Map;
 
 /** Contrato HTTP da API. Os tipos ficam separados das entidades JPA do núcleo. */
 public final class Dtos {
@@ -42,11 +44,16 @@ public final class Dtos {
     public record RespostaRequest(@Min(1) long questaoId, @NotBlank @Size(max = 1) String letra) {
     }
 
+    /**
+     * Confirmação da prévia. {@code gabaritos} mapeia o índice da questão à letra correta,
+     * para as questões que o PDF não trouxe gabarito (ou que o usuário quer corrigir).
+     */
     public record ConfirmarImportacaoRequest(
             @Size(max = 255) String concurso,
             @Size(max = 120) String banca,
             @Min(1950) @Max(2100) Integer ano,
-            @NotBlank List<Integer> indices) {
+            @NotNull List<Integer> indices,
+            Map<Integer, String> gabaritos) {
     }
 
     // ---------- Saída ----------

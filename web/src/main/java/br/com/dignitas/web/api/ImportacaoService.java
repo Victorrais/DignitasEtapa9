@@ -110,12 +110,17 @@ public class ImportacaoService {
         Pendente p = pendentes.get(id);
         if (p == null) throw new NoSuchElementException("Prévia não encontrada ou expirada. Envie o arquivo novamente.");
 
+        // Gabaritos informados na revisão: a letra enviada passa a ser a única correta da questão
+        if (req.gabaritos() != null) {
+            req.gabaritos().forEach((indice, letra) -> {
+                QuestionDraft d = indiceValido(p, indice);
+                d.getAlternatives().forEach(a -> a.setCorrect(a.getLetter().equalsIgnoreCase(letra)));
+            });
+        }
+
         List<QuestionDraft> escolhidas = new ArrayList<>();
         for (Integer i : req.indices()) {
-            if (i == null || i < 0 || i >= p.questoes().size()) {
-                throw new IllegalArgumentException("Índice de questão inválido: " + i);
-            }
-            QuestionDraft d = p.questoes().get(i);
+            QuestionDraft d = indiceValido(p, i);
             if (d.validate().isEmpty()) escolhidas.add(d);
         }
         if (escolhidas.isEmpty()) throw new IllegalArgumentException("Nenhuma questão válida foi selecionada.");
@@ -124,6 +129,13 @@ public class ImportacaoService {
         SaveSummary resumo = importacoes.save(concurso, p.arquivo(), p.hash(), p.paginas(), p.paginasOcr(), escolhidas);
         pendentes.remove(id);
         return new ImportacaoConfirmada(resumo.saved(), req.indices().size() - resumo.saved());
+    }
+
+    private static QuestionDraft indiceValido(Pendente p, Integer indice) {
+        if (indice == null || indice < 0 || indice >= p.questoes().size()) {
+            throw new IllegalArgumentException("Índice de questão inválido: " + indice);
+        }
+        return p.questoes().get(indice);
     }
 
     public List<ImportRow> listar() {

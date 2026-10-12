@@ -102,4 +102,7 @@ kbd { font-family: var(--mono); padding: 1px 5px; border: 1px solid var(--border
 .soltar strong { color: var(--accent-strong); }
 .revisao-item { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .revisao-item:last-child { border-bottom: 0; }
+.gabarito { border: 0; padding: 0; margin: 8px 0 0; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.gabarito legend { font-size: .8rem; color: var(--fg-muted); padding: 0; margin-right: 8px; float: left; }
+.gabarito::after { content: ""; display: block; clear: both; }
 [hidden] { display: none !important; }
