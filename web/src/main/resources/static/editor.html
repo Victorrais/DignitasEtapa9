@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dignitas · Nova questão</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/regras.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/editor.js" defer></script>
+</head>
+<body data-page="editor">
+<header class="topbar">
+    <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><strong>Dignitas</strong></a>
+    <button class="btn btn-small" id="menu-toggle" aria-controls="sidebar" aria-expanded="false">Menu</button>
+</header>
+<div class="app">
+    <nav class="sidebar" id="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><div><strong>Dignitas</strong><span>Banco de questões</span></div></a>
+        <ul class="nav">
+            <li><a href="index.html" data-page="painel"><span class="icon" aria-hidden="true">⌂</span>Painel</a></li>
+            <li><a href="questoes.html" data-page="questoes"><span class="icon" aria-hidden="true">☰</span>Questões</a></li>
+            <li><a href="editor.html" data-page="editor"><span class="icon" aria-hidden="true">✎</span>Nova questão</a></li>
+            <li><a href="praticar.html" data-page="praticar"><span class="icon" aria-hidden="true">▶</span>Praticar</a></li>
+            <li><a href="historico.html" data-page="historico"><span class="icon" aria-hidden="true">↺</span>Histórico</a></li>
+            <li><a href="estatisticas.html" data-page="estatisticas"><span class="icon" aria-hidden="true">▦</span>Estatísticas</a></li>
+            <li><a href="importar.html" data-page="importar"><span class="icon" aria-hidden="true">⇪</span>Importar PDF</a></li>
+        </ul>
+        <div class="sidebar-footer"><button class="btn btn-small" id="theme-toggle" type="button">Alternar tema</button></div>
+    </nav>
+
+    <main class="main" id="conteudo">
+        <div class="page-header">
+            <div>
+                <h1>Nova questão</h1>
+                <p>Cadastre uma questão manualmente. Campos com * são obrigatórios.</p>
+            </div>
+        </div>
+
+        <div class="alert alert-error" id="resumo-erros" role="alert" tabindex="-1" hidden></div>
+
+        <form id="form-questao" novalidate>
+            <div class="grid grid-main-aside">
+                <div>
+                    <section class="card">
+                        <h2>Conteúdo</h2>
+                        <div class="field">
+                            <label for="texto-base">Texto-base <small>(opcional)</small></label>
+                            <textarea id="texto-base" name="textoBase" rows="3" placeholder="Texto de apoio compartilhado por várias questões"></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="enunciado">Enunciado *</label>
+                            <textarea id="enunciado" name="enunciado" rows="4" maxlength="2000" aria-describedby="contador-enunciado erro-enunciado"></textarea>
+                            <span class="contador" id="contador-enunciado">0 / 2000</span>
+                            <span class="field-error" id="erro-enunciado"></span>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2>Alternativas *</h2>
+                            <div class="tipo-questao" role="radiogroup" aria-label="Tipo de questão">
+                                <label><input type="radio" name="tipo" value="multipla" checked> Múltipla escolha</label>
+                                <label><input type="radio" name="tipo" value="certo-errado"> Certo ou errado</label>
+                            </div>
+                        </div>
+                        <p class="muted">Selecione o círculo da alternativa correta.</p>
+                        <div id="alternativas" role="radiogroup" aria-label="Alternativa correta"></div>
+                        <span class="field-error" id="erro-alternativas"></span>
+                        <div class="form-actions">
+                            <button class="btn btn-small" type="button" id="adicionar">+ Adicionar alternativa</button>
+                        </div>
+                    </section>
+                </div>
+
+                <aside>
+                    <section class="card">
+                        <h2>Classificação</h2>
+                        <div class="field">
+                            <label for="disciplina">Disciplina</label>
+                            <input type="text" id="disciplina" name="disciplina" list="lista-disciplinas" autocomplete="off">
+                            <datalist id="lista-disciplinas"></datalist>
+                        </div>
+                        <div class="field">
+                            <label for="concurso">Concurso</label>
+                            <input type="text" id="concurso" name="concurso" placeholder="Ex.: TRF 1ª Região">
+                        </div>
+                        <div class="form-row">
+                            <div class="field">
+                                <label for="banca">Banca</label>
+                                <input type="text" id="banca" name="banca" list="lista-bancas" autocomplete="off">
+                                <datalist id="lista-bancas"></datalist>
+                            </div>
+                            <div class="field">
+                                <label for="ano">Ano</label>
+                                <input type="number" id="ano" name="ano" inputmode="numeric" min="1950" step="1">
+                                <span class="field-error" id="erro-ano"></span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="numero">Nº na prova</label>
+                            <input type="number" id="numero" name="numero" min="1" step="1">
+                            <span class="field-error" id="erro-numero"></span>
+                        </div>
+                        <label class="check"><input type="checkbox" id="anulada" name="anulada"> Questão anulada pela banca</label>
+                    </section>
+
+                    <section class="card">
+                        <div class="form-actions">
+                            <button class="btn btn-primary" type="submit">Salvar questão</button>
+                            <button class="btn" type="reset">Limpar</button>
+                        </div>
+                    </section>
+                </aside>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+</html>

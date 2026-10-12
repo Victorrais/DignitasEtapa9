@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dignitas · Importar PDF</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/regras.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/importar.js" defer></script>
+</head>
+<body data-page="importar">
+<header class="topbar">
+    <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><strong>Dignitas</strong></a>
+    <button class="btn btn-small" id="menu-toggle" aria-controls="sidebar" aria-expanded="false">Menu</button>
+</header>
+<div class="app">
+    <nav class="sidebar" id="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><div><strong>Dignitas</strong><span>Banco de questões</span></div></a>
+        <ul class="nav">
+            <li><a href="index.html" data-page="painel"><span class="icon" aria-hidden="true">⌂</span>Painel</a></li>
+            <li><a href="questoes.html" data-page="questoes"><span class="icon" aria-hidden="true">☰</span>Questões</a></li>
+            <li><a href="editor.html" data-page="editor"><span class="icon" aria-hidden="true">✎</span>Nova questão</a></li>
+            <li><a href="praticar.html" data-page="praticar"><span class="icon" aria-hidden="true">▶</span>Praticar</a></li>
+            <li><a href="historico.html" data-page="historico"><span class="icon" aria-hidden="true">↺</span>Histórico</a></li>
+            <li><a href="estatisticas.html" data-page="estatisticas"><span class="icon" aria-hidden="true">▦</span>Estatísticas</a></li>
+            <li><a href="importar.html" data-page="importar"><span class="icon" aria-hidden="true">⇪</span>Importar PDF</a></li>
+        </ul>
+        <div class="sidebar-footer"><button class="btn btn-small" id="theme-toggle" type="button">Alternar tema</button></div>
+    </nav>
+
+    <main class="main" id="conteudo">
+        <div class="page-header">
+            <div>
+                <h1>Importar prova em PDF</h1>
+                <p>Envie o arquivo, revise as questões encontradas e confirme.</p>
+            </div>
+        </div>
+
+        <ol class="passos" aria-label="Etapas da importação">
+            <li id="passo-1" class="ativo">1. Arquivo</li>
+            <li id="passo-2">2. Revisão</li>
+            <li id="passo-3">3. Concluído</li>
+        </ol>
+
+        <!-- Etapa 1 -->
+        <form class="card" id="form-arquivo" novalidate>
+            <div class="alert alert-error" id="erros-arquivo" role="alert" hidden></div>
+            <label class="soltar" id="zona" for="arquivo">
+                <input type="file" id="arquivo" accept="application/pdf,.pdf">
+                <strong>Escolha um PDF</strong>
+                <span>ou arraste o arquivo para cá</span>
+                <small>Somente .pdf, até 20 MB</small>
+                <span id="nome-arquivo" class="badge badge-accent" hidden></span>
+            </label>
+            <div class="form-row mt">
+                <div class="field">
+                    <label for="i-concurso">Concurso *</label>
+                    <input type="text" id="i-concurso" placeholder="Ex.: TRF 1ª Região">
+                    <span class="field-error" id="erro-i-concurso"></span>
+                </div>
+                <div class="field">
+                    <label for="i-banca">Banca</label>
+                    <input type="text" id="i-banca" list="lista-bancas" autocomplete="off">
+                    <datalist id="lista-bancas"></datalist>
+                </div>
+                <div class="field">
+                    <label for="i-ano">Ano</label>
+                    <input type="number" id="i-ano" min="1950" step="1">
+                    <span class="field-error" id="erro-i-ano"></span>
+                </div>
+            </div>
+            <label class="check"><input type="checkbox" id="i-ocr"> Usar OCR em páginas escaneadas (mais lento)</label>
+            <div id="progresso" class="mt" hidden>
+                <div class="linha-barra-topo"><span id="progresso-texto">Lendo páginas…</span><strong id="progresso-pct">0%</strong></div>
+                <div class="bar secondary"><span id="progresso-barra"></span></div>
+            </div>
+            <div class="form-actions mt">
+                <button class="btn btn-primary" type="submit" id="enviar">Extrair questões</button>
+            </div>
+        </form>
+
+        <!-- Etapa 2 -->
+        <section class="card" id="revisao" hidden>
+            <div class="card-header">
+                <h2>Questões encontradas</h2>
+                <label class="check"><input type="checkbox" id="todas" checked> Selecionar todas</label>
+            </div>
+            <p class="muted" id="resumo-revisao"></p>
+            <div id="lista-revisao"></div>
+            <div class="form-actions mt">
+                <button class="btn btn-primary" type="button" id="confirmar">Salvar selecionadas</button>
+                <button class="btn" type="button" id="voltar">Voltar</button>
+            </div>
+        </section>
+
+        <!-- Etapa 3 -->
+        <section class="card alert-ok" id="concluido" hidden>
+            <h2>Importação concluída</h2>
+            <p id="resumo-final"></p>
+            <div class="form-actions">
+                <a class="btn btn-primary" href="questoes.html">Ver questões</a>
+                <button class="btn" type="button" id="nova">Importar outro arquivo</button>
+            </div>
+        </section>
+
+        <section class="card mt">
+            <div class="card-header"><h2>Importações anteriores</h2></div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Arquivo</th><th>Origem</th><th>Data</th><th class="num">Questões</th></tr></thead>
+                    <tbody id="t-importacoes"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

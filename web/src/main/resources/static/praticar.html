@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dignitas · Praticar</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/regras.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/praticar.js" defer></script>
+</head>
+<body data-page="praticar">
+<header class="topbar">
+    <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><strong>Dignitas</strong></a>
+    <button class="btn btn-small" id="menu-toggle" aria-controls="sidebar" aria-expanded="false">Menu</button>
+</header>
+<div class="app">
+    <nav class="sidebar" id="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><div><strong>Dignitas</strong><span>Banco de questões</span></div></a>
+        <ul class="nav">
+            <li><a href="index.html" data-page="painel"><span class="icon" aria-hidden="true">⌂</span>Painel</a></li>
+            <li><a href="questoes.html" data-page="questoes"><span class="icon" aria-hidden="true">☰</span>Questões</a></li>
+            <li><a href="editor.html" data-page="editor"><span class="icon" aria-hidden="true">✎</span>Nova questão</a></li>
+            <li><a href="praticar.html" data-page="praticar"><span class="icon" aria-hidden="true">▶</span>Praticar</a></li>
+            <li><a href="historico.html" data-page="historico"><span class="icon" aria-hidden="true">↺</span>Histórico</a></li>
+            <li><a href="estatisticas.html" data-page="estatisticas"><span class="icon" aria-hidden="true">▦</span>Estatísticas</a></li>
+            <li><a href="importar.html" data-page="importar"><span class="icon" aria-hidden="true">⇪</span>Importar PDF</a></li>
+        </ul>
+        <div class="sidebar-footer"><button class="btn btn-small" id="theme-toggle" type="button">Alternar tema</button></div>
+    </nav>
+
+    <main class="main" id="conteudo">
+        <div class="page-header">
+            <div>
+                <h1>Praticar</h1>
+                <p>Responda e veja o gabarito na hora.</p>
+            </div>
+            <div class="field">
+                <label for="p-disciplina">Disciplina</label>
+                <select id="p-disciplina"><option value="">Todas</option></select>
+            </div>
+        </div>
+
+        <div class="grid grid-main-aside">
+            <form class="card" id="form-resposta" novalidate>
+                <div class="questao-meta" id="meta"></div>
+                <div class="texto-base" id="texto-base" hidden></div>
+                <p class="enunciado" id="enunciado"></p>
+                <fieldset class="opcoes" id="opcoes">
+                    <legend class="visually-hidden">Alternativas</legend>
+                </fieldset>
+                <div class="alert mt" id="resultado" role="status" hidden></div>
+                <div class="form-actions mt">
+                    <button class="btn btn-primary" type="submit" id="responder" disabled>Responder</button>
+                    <button class="btn" type="button" id="proxima">Próxima questão</button>
+                    <button class="btn" type="button" id="marcar" aria-pressed="false">Marcar para revisão</button>
+                </div>
+                <p class="atalhos">Atalhos: <kbd>A</kbd>–<kbd>E</kbd> escolhem a alternativa, <kbd>Enter</kbd> responde, <kbd>N</kbd> vai para a próxima.</p>
+            </form>
+
+            <aside class="card">
+                <h2>Nesta sessão</h2>
+                <div class="grid grid-2">
+                    <div class="stat"><span class="stat-value" id="s-respondidas">0</span><span class="stat-label">respondidas</span></div>
+                    <div class="stat"><span class="stat-value" id="s-acerto">0%</span><span class="stat-label">de acerto</span></div>
+                </div>
+                <div class="bar mt"><span id="s-barra"></span></div>
+            </aside>
+        </div>
+    </main>
+</div>
+</body>
+</html>

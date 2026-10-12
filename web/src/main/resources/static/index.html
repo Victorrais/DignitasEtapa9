@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dignitas · Painel</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/regras.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/painel.js" defer></script>
+</head>
+<body data-page="painel">
+<header class="topbar">
+    <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><strong>Dignitas</strong></a>
+    <button class="btn btn-small" id="menu-toggle" aria-controls="sidebar" aria-expanded="false">Menu</button>
+</header>
+<div class="app">
+    <nav class="sidebar" id="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><div><strong>Dignitas</strong><span>Banco de questões</span></div></a>
+        <ul class="nav">
+            <li><a href="index.html" data-page="painel"><span class="icon" aria-hidden="true">⌂</span>Painel</a></li>
+            <li><a href="questoes.html" data-page="questoes"><span class="icon" aria-hidden="true">☰</span>Questões</a></li>
+            <li><a href="editor.html" data-page="editor"><span class="icon" aria-hidden="true">✎</span>Nova questão</a></li>
+            <li><a href="praticar.html" data-page="praticar"><span class="icon" aria-hidden="true">▶</span>Praticar</a></li>
+            <li><a href="historico.html" data-page="historico"><span class="icon" aria-hidden="true">↺</span>Histórico</a></li>
+            <li><a href="estatisticas.html" data-page="estatisticas"><span class="icon" aria-hidden="true">▦</span>Estatísticas</a></li>
+            <li><a href="importar.html" data-page="importar"><span class="icon" aria-hidden="true">⇪</span>Importar PDF</a></li>
+        </ul>
+        <div class="sidebar-footer"><button class="btn btn-small" id="theme-toggle" type="button">Alternar tema</button></div>
+    </nav>
+
+    <main class="main" id="conteudo">
+        <div class="page-header">
+            <div>
+                <h1>Painel</h1>
+                <p>Resumo do seu estudo e atalhos para continuar.</p>
+            </div>
+            <a class="btn btn-primary" href="praticar.html">Continuar praticando</a>
+        </div>
+
+        <section class="grid grid-4" aria-label="Resumo">
+            <div class="card stat"><span class="stat-value" id="st-questoes">0</span><span class="stat-label">Questões no banco</span></div>
+            <div class="card stat"><span class="stat-value" id="st-respondidas">0</span><span class="stat-label">Questões respondidas</span></div>
+            <div class="card stat"><span class="stat-value" id="st-acerto">0%</span><span class="stat-label">Taxa de acerto</span></div>
+            <div class="card stat"><span class="stat-value" id="st-marcadas">0</span><span class="stat-label">Marcadas para revisão</span></div>
+        </section>
+
+        <div class="grid grid-main-aside mt">
+            <section class="card">
+                <div class="card-header">
+                    <h2>Últimas respostas</h2>
+                    <a href="historico.html">Ver histórico</a>
+                </div>
+                <ul class="lista-simples" id="ultimas"></ul>
+            </section>
+            <section class="card">
+                <div class="card-header"><h2>Por disciplina</h2></div>
+                <div id="por-disciplina"></div>
+            </section>
+        </div>
+    </main>
+</div>
+</body>
+</html>

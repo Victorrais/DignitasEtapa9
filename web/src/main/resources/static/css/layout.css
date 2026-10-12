@@ -1,0 +1,69 @@
+/* Dignitas — estrutura das páginas: menu lateral, cabeçalho e grade de conteúdo. */
+
+.app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+/* ---------- Menu lateral ---------- */
+.sidebar {
+    position: sticky; top: 0; height: 100vh;
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 20px 14px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+}
+.brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 18px; text-decoration: none; color: var(--fg); }
+.brand img { width: 36px; height: 36px; }
+.brand strong { font-size: 1.15rem; }
+.brand span { display: block; font-size: .75rem; color: var(--fg-muted); font-weight: 400; }
+
+.nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.nav a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: var(--radius-sm);
+    color: var(--fg-muted); text-decoration: none; font-weight: 600;
+}
+.nav a:hover { background: var(--surface-inset); color: var(--fg); }
+.nav a[aria-current="page"] { background: var(--accent-subtle); color: var(--accent-strong); }
+.nav .icon { width: 18px; text-align: center; }
+
+.sidebar-footer { margin-top: auto; }
+
+/* ---------- Conteúdo ---------- */
+.main { min-width: 0; padding: 28px 32px 48px; }
+.page-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.page-header h1 { margin: 0; }
+.page-header p { margin: 4px 0 0; color: var(--fg-muted); }
+
+.grid { display: grid; gap: 16px; }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-main-aside { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: start; }
+
+/* ---------- Barra superior (somente telas pequenas) ---------- */
+.topbar { display: none; }
+
+@media (max-width: 960px) {
+    .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-main-aside { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+    .app { grid-template-columns: 1fr; }
+    .topbar {
+        display: flex; align-items: center; justify-content: space-between;
+        position: sticky; top: 0; z-index: 30;
+        padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+    }
+    .topbar .brand { padding: 0; }
+    .sidebar {
+        position: fixed; inset: 0 auto 0 0; z-index: 40; width: 260px;
+        transform: translateX(-100%); transition: transform .2s ease;
+    }
+    .sidebar.open { transform: none; box-shadow: var(--shadow); }
+    .backdrop { position: fixed; inset: 0; z-index: 35; background: rgba(0, 0, 0, .35); }
+    .main { padding: 20px 16px 40px; }
+    .grid-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 420px) {
+    .grid-4 { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dignitas · Estatísticas</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/regras.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estatisticas.js" defer></script>
+</head>
+<body data-page="estatisticas">
+<header class="topbar">
+    <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><strong>Dignitas</strong></a>
+    <button class="btn btn-small" id="menu-toggle" aria-controls="sidebar" aria-expanded="false">Menu</button>
+</header>
+<div class="app">
+    <nav class="sidebar" id="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="index.html"><img src="img/dignitas.png" alt=""><div><strong>Dignitas</strong><span>Banco de questões</span></div></a>
+        <ul class="nav">
+            <li><a href="index.html" data-page="painel"><span class="icon" aria-hidden="true">⌂</span>Painel</a></li>
+            <li><a href="questoes.html" data-page="questoes"><span class="icon" aria-hidden="true">☰</span>Questões</a></li>
+            <li><a href="editor.html" data-page="editor"><span class="icon" aria-hidden="true">✎</span>Nova questão</a></li>
+            <li><a href="praticar.html" data-page="praticar"><span class="icon" aria-hidden="true">▶</span>Praticar</a></li>
+            <li><a href="historico.html" data-page="historico"><span class="icon" aria-hidden="true">↺</span>Histórico</a></li>
+            <li><a href="estatisticas.html" data-page="estatisticas"><span class="icon" aria-hidden="true">▦</span>Estatísticas</a></li>
+            <li><a href="importar.html" data-page="importar"><span class="icon" aria-hidden="true">⇪</span>Importar PDF</a></li>
+        </ul>
+        <div class="sidebar-footer"><button class="btn btn-small" id="theme-toggle" type="button">Alternar tema</button></div>
+    </nav>
+
+    <main class="main" id="conteudo">
+        <div class="page-header">
+            <div>
+                <h1>Estatísticas</h1>
+                <p>Desempenho calculado a partir do seu histórico de respostas.</p>
+            </div>
+        </div>
+
+        <section class="grid grid-4" aria-label="Visão geral">
+            <div class="card stat"><span class="stat-value" id="e-tentativas">0</span><span class="stat-label">Respostas</span></div>
+            <div class="card stat"><span class="stat-value" id="e-acertos">0</span><span class="stat-label">Acertos</span></div>
+            <div class="card stat"><span class="stat-value" id="e-erros">0</span><span class="stat-label">Erros</span></div>
+            <div class="card stat"><span class="stat-value" id="e-acerto">0%</span><span class="stat-label">Taxa de acerto</span></div>
+        </section>
+
+        <section class="card mt">
+            <div class="card-header"><h2>Últimos 7 dias</h2></div>
+            <div class="dias" id="dias" role="img" aria-label="Respostas por dia nos últimos 7 dias"></div>
+            <div class="legenda"><span class="l-acertos">Acertos</span><span class="l-erros">Erros</span></div>
+        </section>
+
+        <div class="grid grid-2 mt">
+            <section class="card">
+                <div class="card-header"><h2>Por disciplina</h2></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Disciplina</th><th class="num">Respostas</th><th class="num">Acerto</th><th>Desempenho</th></tr></thead>
+                        <tbody id="t-disciplina"></tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="card">
+                <div class="card-header"><h2>Por banca</h2></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Banca</th><th class="num">Respostas</th><th class="num">Acerto</th><th>Desempenho</th></tr></thead>
+                        <tbody id="t-banca"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+</body>
+</html>

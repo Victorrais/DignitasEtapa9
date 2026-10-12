@@ -1,0 +1,50 @@
+/* Wireframes de baixa fidelidade: só estrutura, sem cor nem conteúdo real. */
+:root { --linha: #9a9a9a; --bloco: #e6e6e6; --texto: #555; --fundo: #fafafa; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; font: 13px/1.4 "Segoe Print", "Comic Sans MS", "Segoe UI", sans-serif; color: var(--texto); }
+
+.tela { width: 1280px; min-height: 800px; display: grid; grid-template-columns: 220px 1fr; border: 2px solid var(--linha); background: var(--fundo); }
+.menu { border-right: 2px dashed var(--linha); padding: 18px 14px; display: flex; flex-direction: column; gap: 8px; }
+.logo { height: 40px; border: 2px solid var(--linha); display: grid; place-items: center; font-weight: 700; margin-bottom: 10px; }
+.item { height: 32px; border: 1.5px solid var(--linha); border-radius: 4px; display: flex; align-items: center; padding: 0 10px; }
+.item.ativo { background: #cfcfcf; font-weight: 700; }
+.menu .rodape { margin-top: auto; }
+
+.conteudo { padding: 22px 28px; display: flex; flex-direction: column; gap: 14px; }
+.titulo { display: flex; justify-content: space-between; align-items: center; }
+.titulo h1 { margin: 0; font-size: 22px; }
+.titulo small { display: block; }
+
+.caixa { border: 2px solid var(--linha); border-radius: 6px; padding: 12px; background: #fff; position: relative; }
+.caixa > .rot { position: absolute; top: -10px; left: 10px; background: #fff; padding: 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+.linha-x { display: flex; gap: 14px; }
+.linha-x > * { flex: 1; }
+.col2 { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; align-items: start; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; height: 32px; padding: 0 14px; border: 2px solid var(--linha); border-radius: 4px; font-weight: 700; background: #fff; }
+.btn.prim { background: #bdbdbd; }
+.campo { height: 32px; border: 1.5px solid var(--linha); border-radius: 4px; background: #fff; display: flex; align-items: center; padding: 0 8px; color: #999; }
+.area { height: 80px; border: 1.5px solid var(--linha); border-radius: 4px; background: #fff; padding: 6px 8px; color: #999; }
+.rotulo { font-size: 11px; font-weight: 700; margin: 6px 0 3px; }
+.txt { height: 9px; background: var(--bloco); border-radius: 3px; margin: 7px 0; }
+.txt.c { width: 60%; } .txt.m { width: 80%; }
+.num { font-size: 26px; font-weight: 700; }
+.tabela { border: 1.5px solid var(--linha); }
+.tabela div { display: grid; grid-template-columns: 50px 3fr 1fr 1fr 120px; gap: 8px; padding: 8px; border-bottom: 1px dashed var(--linha); }
+.tabela div:first-child { font-weight: 700; background: var(--bloco); }
+.tabela span { height: 9px; background: var(--bloco); border-radius: 3px; align-self: center; }
+.tabela div:first-child span { background: none; height: auto; }
+.opcao { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--linha); border-radius: 4px; padding: 8px; margin-bottom: 6px; background: #fff; }
+.bola { width: 24px; height: 24px; border: 2px solid var(--linha); border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 11px; flex: none; }
+.barra { height: 10px; border: 1.5px solid var(--linha); border-radius: 6px; margin: 6px 0 12px; }
+.barra i { display: block; height: 100%; width: 60%; background: #bdbdbd; }
+.colunas { display: flex; align-items: flex-end; gap: 18px; height: 140px; padding: 0 10px; }
+.colunas i { flex: 1; background: #cfcfcf; border: 1.5px solid var(--linha); }
+.soltar { height: 120px; border: 2px dashed var(--linha); border-radius: 6px; display: grid; place-items: center; text-align: center; }
+.nota { font-size: 11px; color: #888; border-left: 3px solid #bbb; padding-left: 8px; }
+.x { display: grid; place-items: center; height: 70px; border: 1.5px solid var(--linha); background:
+    linear-gradient(to top right, transparent calc(50% - 1px), var(--linha), transparent calc(50% + 1px)),
+    linear-gradient(to bottom right, transparent calc(50% - 1px), var(--linha), transparent calc(50% + 1px)); }
+.passos { display: flex; gap: 8px; }
+.passos span { border: 1.5px solid var(--linha); border-radius: 14px; padding: 3px 12px; }
+.passos span.ativo { background: #bdbdbd; font-weight: 700; }

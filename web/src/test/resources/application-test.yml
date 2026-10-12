@@ -1,0 +1,8 @@
+# Perfil de testes: H2 em memória no modo MySQL, com o mesmo schema.sql do banco real.
+dignitas:
+  db:
+    url: jdbc:h2:mem:dignitas-teste;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    usuario: sa
+    senha: ""
+    driver: org.h2.Driver
+  tessdata-dir: ${java.io.tmpdir}/dignitas-sem-tessdata

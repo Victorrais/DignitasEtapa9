@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Wireframe · Nova questão</title><link rel="stylesheet" href="wireframe.css"></head>
+<body><div class="tela">
+    <nav class="menu"><div class="logo">LOGO · Dignitas</div>
+        <div class="item">Painel</div><div class="item">Questões</div><div class="item ativo">Nova questão</div><div class="item">Praticar</div>
+        <div class="item">Histórico</div><div class="item">Estatísticas</div><div class="item">Importar PDF</div>
+        <div class="item rodape">Alternar tema</div></nav>
+    <main class="conteudo">
+        <div class="titulo"><div><h1>Nova questão</h1><small>Campos com * são obrigatórios</small></div></div>
+        <div class="caixa"><span class="rot">resumo de erros (aparece ao salvar com problemas)</span><div class="txt m"></div><div class="txt c"></div></div>
+        <div class="col2">
+            <div>
+                <div class="caixa"><span class="rot">conteúdo</span>
+                    <div class="rotulo">Texto-base (opcional)</div><div class="area"></div>
+                    <div class="rotulo">Enunciado *</div><div class="area"></div><div class="nota">contador 0 / 2000</div></div>
+                <div class="caixa" style="margin-top:14px"><span class="rot">alternativas *</span>
+                    <div class="nota">( ) Múltipla escolha  ( ) Certo ou errado</div>
+                    <div class="opcao"><span class="bola">○</span><span class="bola">A</span><div class="campo" style="flex:1"></div><span class="btn">✕</span></div>
+                    <div class="opcao"><span class="bola">○</span><span class="bola">B</span><div class="campo" style="flex:1"></div><span class="btn">✕</span></div>
+                    <div class="opcao"><span class="bola">●</span><span class="bola">C</span><div class="campo" style="flex:1"></div><span class="btn">✕</span></div>
+                    <div class="opcao"><span class="bola">○</span><span class="bola">D</span><div class="campo" style="flex:1"></div><span class="btn">✕</span></div>
+                    <span class="btn">+ Adicionar alternativa</span></div>
+            </div>
+            <div>
+                <div class="caixa"><span class="rot">classificação</span>
+                    <div class="rotulo">Disciplina</div><div class="campo">sugestões ▾</div>
+                    <div class="rotulo">Concurso</div><div class="campo"></div>
+                    <div class="linha-x"><div><div class="rotulo">Banca</div><div class="campo"></div></div><div><div class="rotulo">Ano</div><div class="campo">1950–ano+1</div></div></div>
+                    <div class="rotulo">Nº na prova</div><div class="campo"></div>
+                    <div class="nota">[ ] Questão anulada</div></div>
+                <div class="caixa" style="margin-top:14px"><span class="rot">ações</span><span class="btn prim">Salvar questão</span> <span class="btn">Limpar</span></div>
+            </div>
+        </div>
+        <p class="nota">Validações: enunciado obrigatório; 2 a 5 alternativas sem texto vazio; exatamente 1 correta (exceto anulada); ano válido; bloqueia questão repetida.</p>
+    </main>
+</div></body></html>
